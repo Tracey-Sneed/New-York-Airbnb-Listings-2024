@@ -237,6 +237,147 @@ SELECT "neighborhood", AVG("price"), SUM("number_of_reviews")
 FROM "all_listings"
 GROUP BY "neighborhood";
 
+--Table used for generating insights for visualization
+CREATE TABLE "top_ten_listings" (
+    "id" PRIMARY KEY,
+    "name" TEXT,
+    "neighborhood_group" TEXT,
+    "number_of_reviews" INTEGER,
+    "price" DECIMAL
+    );
+
+--Populates the listings that have hosted the most guests
+INSERT INTO "top_ten_listings" ("id", "name", "neighborhood_group", "number_of_reviews", "price")
+SELECT "id", "name", "neighborhood_group", "number_of_reviews", "price"
+FROM "all_listings"
+ORDER BY "number_of_reviews" DESC
+LIMIT 10;
+
+--Table for avg neighborhood price in manhattan
+CREATE TABLE "avg_neighborhood_price_manhattan" (
+    "neighborhood", 
+    "avg_price"
+    );
+
+--Populates the avg_neighborhood price in manhattan table
+INSERT INTO "avg_neighborhood_price_manhattan" ("neighborhood", "avg_price")
+SELECT "neighborhood", AVG("price")
+FROM "manhattan"
+GROUP BY "neighborhood"
+ORDER BY AVG("price") DESC;
+
+-- Needed to eliminate "No rating" values from the ratings column as PowerBI had issues with converting the column to decimal numbers
+CREATE TABLE "filtered_ratings" (
+    "id" SERIAL PRIMARY KEY, 
+    "name" TEXT, 
+    "host_id" INTEGER,
+    "host_name" TEXT, 
+    "neighborhood_group" TEXT,
+    "neighborhood" TEXT,
+    "latitude" FLOAT,
+    "longitude" FLOAT,
+    "room_type" TEXT,
+    "price" DECIMAL,
+    "minimum_nights" INTEGER,
+    "number_of_reviews" INTEGER,
+    "last_review" DATE,
+    "reviews_per_month" FLOAT,
+    "calculated_host_listings_count" INTEGER,
+    "availability_365" INTEGER,
+    "number_of_reviews_ltm" INTEGER,
+    "license" TEXT,
+    "rating" DECIMAL,
+    "bedrooms" DECIMAL,
+    "beds" DECIMAL,
+    "baths" DECIMAL
+);
+
+--This populates the filtered_ratings table
+INSERT INTO "filtered_ratings" ("id", "name", "host_id", "host_name", "neighborhood", "latitude", "longitude",
+"room_type", "price", "minimum_nights", "number_of_reviews", "last_review", "reviews_per_month", "calculated_host_listings_count",
+"availability_365", "number_of_reviews", "license", "rating", "bedrooms", "beds", "baths")
+SELECT "id", "name", "host_id", "host_name", "neighborhood", "latitude", "longitude",
+"room_type", "price", "minimum_nights", "number_of_reviews", "last_review", "reviews_per_month", "calculated_host_listings_count",
+"availability_365", "number_of_reviews", "license", "rating", "bedrooms", "beds", "baths"
+FROM "all_listings"
+WHERE "rating" LIKE '%0%' OR "rating" LIKE '%1%' OR "rating" LIKE '%2%' OR "rating" LIKE '%3%' OR "rating" LIKE '%4%' OR "rating" LIKE '%5%';
+
+--I needed listing ratings that included the borough they are in, this is for the bronx
+CREATE TABLE "filtered_bronx_ratings" (
+    "id" SERIAL PRIMARY KEY, 
+    "name" TEXT, 
+    "host_id" INTEGER,
+    "neighborhood" TEXT,
+    "rating" DECIMAL
+);
+
+--this inserts info into the filtered_bronx_ratings table
+INSERT INTO "filtered_bronx_ratings" ("id", "name", "host_id", "neighborhood", "rating")
+SELECT "id", "name", "host_id", "neighborhood", "rating"
+FROM "all_listings"
+WHERE "neighborhood_group" = 'Bronx' AND ("rating" LIKE '%0%' OR "rating" LIKE '%1%' OR "rating" LIKE '%2%' OR "rating" LIKE '%3%' OR "rating" LIKE '%4%' OR "rating" LIKE '%5%');
+
+--I needed listing ratings that included the borough they are in, this is for brooklyn
+CREATE TABLE "filtered_brooklyn_ratings" (
+    "id" SERIAL PRIMARY KEY, 
+    "name" TEXT, 
+    "host_id" INTEGER,
+    "neighborhood" TEXT,
+    "rating" DECIMAL
+);
+
+--this inserts info into the filtered_brooklyn_ratings table
+INSERT INTO "filtered_brooklyn_ratings" ("id", "name", "host_id", "neighborhood", "rating")
+SELECT "id", "name", "host_id", "neighborhood", "rating"
+FROM "all_listings"
+WHERE "neighborhood_group" = 'Brooklyn' AND ("rating" LIKE '%0%' OR "rating" LIKE '%1%' OR "rating" LIKE '%2%' OR "rating" LIKE '%3%' OR "rating" LIKE '%4%' OR "rating" LIKE '%5%');
+
+--I needed listing ratings that included the borough they are in, this is for manhattan
+CREATE TABLE "filtered_manhattan_ratings" (
+    "id" SERIAL PRIMARY KEY, 
+    "name" TEXT, 
+    "host_id" INTEGER,
+    "neighborhood" TEXT,
+    "rating" DECIMAL
+);
+
+--this inserts info into the filtered_manhattan_ratings table
+INSERT INTO "filtered_manhattan_ratings" ("id", "name", "host_id", "neighborhood", "rating")
+SELECT "id", "name", "host_id", "neighborhood", "rating"
+FROM "all_listings"
+WHERE "neighborhood_group" = 'Manhattan' AND ("rating" LIKE '%0%' OR "rating" LIKE '%1%' OR "rating" LIKE '%2%' OR "rating" LIKE '%3%' OR "rating" LIKE '%4%' OR "rating" LIKE '%5%');
+
+--I needed listing ratings that included the borough they are in, this is for queens
+CREATE TABLE "filtered_queens_ratings" (
+    "id" SERIAL PRIMARY KEY, 
+    "name" TEXT, 
+    "host_id" INTEGER,
+    "neighborhood" TEXT,
+    "rating" DECIMAL
+);
+
+--this inserts info into the filtered_queens_ratings table
+INSERT INTO "filtered_queens_ratings" ("id", "name", "host_id", "neighborhood", "rating")
+SELECT "id", "name", "host_id", "neighborhood", "rating"
+FROM "all_listings"
+WHERE "neighborhood_group" = 'Queens' AND ("rating" LIKE '%0%' OR "rating" LIKE '%1%' OR "rating" LIKE '%2%' OR "rating" LIKE '%3%' OR "rating" LIKE '%4%' OR "rating" LIKE '%5%');
+
+--I needed listing ratings that included the borough they are in, this is for staten island
+CREATE TABLE "filtered_staten_island_ratings" (
+    "id" SERIAL PRIMARY KEY, 
+    "name" TEXT, 
+    "host_id" INTEGER,
+    "neighborhood" TEXT,
+    "rating" DECIMAL
+);
+
+--this inserts info into the filtered_staten_island_ratings table
+INSERT INTO "filtered_staten_island_ratings" ("id", "name", "host_id", "neighborhood", "rating")
+SELECT "id", "name", "host_id", "neighborhood", "rating"
+FROM "all_listings"
+WHERE "neighborhood_group" = 'Staten Island' AND ("rating" LIKE '%0%' OR "rating" LIKE '%1%' OR "rating" LIKE '%2%' OR "rating" LIKE '%3%' OR "rating" LIKE '%4%' OR "rating" LIKE '%5%');
+
+
 --These indexes are to help speed up searches for listing names, price and ratings
 
 CREATE INDEX "brooklyn_listing_index" ON "brooklyn" ("name", "price", "rating");
