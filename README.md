@@ -150,6 +150,6 @@ This project analyzes Airbnb listing data for New York City as of January 5, 202
 
 ## Contact
 
-For any inquiries or suggestions, please contact Tracey Sneed at [traceysneed510@gmail.com].
+For any inquiries or suggestions, please contact Tracey Sneed at [traceysneed510@gmail.com](mailto:traceysneed510@gmail.com).
 
 ----------
