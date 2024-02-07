@@ -139,8 +139,8 @@ This project analyzes Airbnb listing data for New York City as of January 5, 202
 
 ## Dependencies
 
--   SQLite3: [Link to SQLite3]
--   Power BI: [Link to Power BI]
+- SQLite3: [SQLite3](https://www.sqlite.org/download.html): Download and install SQLite3 for managing the database.
+- Power BI: [Power BI](https://powerbi.microsoft.com/): Download and install Power BI for visualizing and exploring the data with the provided dashboard file.
 
 
 ## Acknowledgments
