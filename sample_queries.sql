@@ -29,3 +29,7 @@ SELECT "neighborhood" FROM "neighborhoods"
 ORDER BY "average_price" DESC
 LIMIT 10;
 
+-- Returns the number of hosts who do not have a rental license or are exempt
+SELECT COUNT("host_id") FROM "all_listings"
+WHERE "license" = 'No License' OR "license" = 'Exempt';
+
