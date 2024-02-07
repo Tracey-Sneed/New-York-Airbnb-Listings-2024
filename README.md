@@ -8,7 +8,7 @@ This project analyzes Airbnb listing data for New York City as of January 5, 202
 ## Project Structure
 
 -   **/Airbnb PowerBi Dashboard.pdf**: Includes pdf snapshot of the dashboard created using PowerBi.
--   **/Airbnb Project Dashboard.pbix**: Includes interactive PowerBi dashboard file used to visualize data relating to the dataset.
+-   **/Airbnb Project Dashboard.pbix**: Includes interactive PowerBI dashboard file used to visualize data relating to the dataset.
 -  **/database.db**: Stores the SQLite3 database file.
 - **/project_summary.pdf**: The pdf write up of the project.
 -   **/new_york_listings_2024.csv**: Contains the raw CSV file downloaded from Kaggle.
