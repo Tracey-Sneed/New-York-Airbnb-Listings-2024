@@ -143,7 +143,7 @@ This project analyzes Airbnb listing data for New York City as of January 5, 202
 - [Power BI](https://powerbi.microsoft.com/): Download and install Power BI for visualizing and exploring the data with the provided dashboard file.
 
 ## Addendum
--Kaggle Collaboration including SQL and Python code [here](https://www.kaggle.com/code/traceycsneed/airbnb-2024-project#Python-EDA)
+- Kaggle Collaboration including SQL and Python code [here](https://www.kaggle.com/code/traceycsneed/airbnb-2024-project#Python-EDA)
 
 ## Acknowledgments
 
