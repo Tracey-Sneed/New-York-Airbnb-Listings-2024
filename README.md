@@ -137,6 +137,10 @@ This project analyzes Airbnb listing data for New York City as of January 5, 202
     -   `queens_listing_index`
     -   `staten_island_listing_index`
 
+## Addendum
+- Kaggle Collaboration including SQL and Python code [here](https://www.kaggle.com/code/traceycsneed/airbnb-2024-project#Python-EDA)
+
+
 ## Dependencies
 
 - [SQLite3](https://www.sqlite.org/download.html): Download and install SQLite3 for managing the database.
